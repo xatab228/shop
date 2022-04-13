@@ -1,6 +1,15 @@
 import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import App from '@/App.vue'
+import UI_components from "@/components/UI/ui"
+import router from '@/router/router';
+import directives from '@/directives/directives';
+import store from '@/store'
 
-createApp(App).use(store).use(router).mount('#app')
+
+const app = createApp(App)
+
+UI_components.forEach(component => app.component(component.name,component));
+
+directives.forEach(directive => app.directive(directive.name,directive));
+
+app.use(router).use(store).mount('#app')
